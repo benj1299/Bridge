@@ -10,10 +10,6 @@
 
 #define NB_CARDS 51
 
-
-int RandRange(int a, int b);
-int* InitNoDuplicates(int a, int b);
-void Mix(int* numbers_array, int size);
 void DistribCards(int *players[4], int nb_cards);
 
 void CreatePlayers(int *tossed_cards) {
