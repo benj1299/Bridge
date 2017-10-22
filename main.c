@@ -13,21 +13,20 @@ int* InitNoDuplicates(int a, int b);
 void Mix(int* numbers_array, int size);
 void DistribCards(int *players[4], int nb_cards);
 
-void CreatePlayers(int *tossed_cards){
-    int *players[4];
-    DistribCards(players, NB_CARDS);
+void CreatePlayers(int *tossed_cards) {
+	int *players[4];
+	DistribCards(players, NB_CARDS);
 }
 
 int main(void)
 {
-    
-    srand(time(NULL));
-    
-    enum card_nbr { AS, ROI, DAME, VALET, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, TROIS, DEUX };
-    enum card_color { PIQUE, COEUR, CARREAU, TREFLE};
-    int *players[4];
-    DistribCards(players, NB_CARDS);
-    
-    return EXIT_SUCCESS;
-}
 
+	srand(time(NULL));
+
+	enum card_nbr { AS, ROI, DAME, VALET, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, TROIS, DEUX };
+	enum card_color { PIQUE, COEUR, CARREAU, TREFLE };
+	int *players[4];
+	DistribCards(players, NB_CARDS);
+
+	return EXIT_SUCCESS;
+}
