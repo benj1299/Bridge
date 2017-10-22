@@ -3,30 +3,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 #include "Game.h"
 #include "Random.h"
 #include "Player.h"
 
 #define NB_CARDS 51
 
-void DistribCards(int *players[4], int nb_cards);
-
-void CreatePlayers(int *tossed_cards) {
-	int *players[4];
-	DistribCards(players, NB_CARDS);
-}
-
+void CreatePlayers(int nb_player, int nb_card);
 
 int main(void)
 {
-	srand(time(NULL));
-
-	enum card_nbr { AS, ROI, DAME, VALET, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, TROIS, DEUX };
-	enum card_color { PIQUE, COEUR, CARREAU, TREFLE };
-	int *players[4];
-
-	DistribCards(players, NB_CARDS);
-
-	return EXIT_SUCCESS;
+    srand(time(NULL));
+    
+    enum card_nbr { AS, ROI, DAME, VALET, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, TROIS, DEUX };
+    enum card_color { PIQUE, COEUR, CARREAU, TREFLE};
+    
+    CreatePlayers(4, NB_CARDS);
+    
+    return EXIT_SUCCESS;
 }
+
+
