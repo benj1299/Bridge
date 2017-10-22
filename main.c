@@ -3,10 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #include "Game.h"
 #include "Random.h"
 #include "Player.h"
+
 #define NB_CARDS 51
+
 
 int RandRange(int a, int b);
 int* InitNoDuplicates(int a, int b);
@@ -18,14 +21,15 @@ void CreatePlayers(int *tossed_cards) {
 	DistribCards(players, NB_CARDS);
 }
 
+
 int main(void)
 {
-
 	srand(time(NULL));
 
 	enum card_nbr { AS, ROI, DAME, VALET, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, TROIS, DEUX };
 	enum card_color { PIQUE, COEUR, CARREAU, TREFLE };
 	int *players[4];
+
 	DistribCards(players, NB_CARDS);
 
 	return EXIT_SUCCESS;

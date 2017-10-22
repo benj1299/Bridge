@@ -10,6 +10,7 @@ void AssociateCard(int card_id, int card[2]) {
 
 }
 
+
 void ShowCard(int card_id) {
 	const char card_name[13][7] = { "AS", "ROI", "DAME", "VALET", "DIX", "NEUF", "HUIT", "SEPT", "SIX", "CINQ", "QUATRE", "TROIS", "DEUX" };
 	const char card_color[4][8] = { "PIQUE", "COEUR", "CARREAU", "TREFLE" };
