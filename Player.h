@@ -5,11 +5,21 @@
 
 typedef struct Player Player;
 struct Player {
-	int deck[13];
+	char name_player[1000];
 	char position;
-	int nb_raises;
+	int deck[13];
+	int role; // déclarant/mort/autres
+	int nombre_levee; //nombre de levée personnel
+	int nb_points_total;
 };
 
+typedef struct Partie Partie;
+struct Partie {
+	int levee_goal; //nombre de levées à réaliser
+	int atout;
+	int donneur;
+	int avancement[]; //nombre de levées en cours
+};
 
 /*
 Distribue les cartes et les sépare selon le nombre de joueurs dans un tableau
