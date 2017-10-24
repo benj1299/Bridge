@@ -18,7 +18,7 @@ int main(void)
     enum card_nbr { AS, ROI, DAME, VALET, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, TROIS, DEUX };
     enum card_color { PIQUE, COEUR, CARREAU, TREFLE};
     
-    CreatePlayers(4, NB_CARDS);
+    CreateParty(4, NB_CARDS);
     
     return EXIT_SUCCESS;
 }
