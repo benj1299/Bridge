@@ -11,6 +11,13 @@ struct GameConfig {
     int avancement[]; //nombre de levées en cours
 };
 
+typedef struct Aucount Aucount;
+struct Aucount {
+    bool player_choice[4];
+    int card;
+    int color
+};
+
 /*
 Retourne le score de levée d'une équipe
 return int;
@@ -44,6 +51,34 @@ const char * ShowCard(int card_id) {
 	return string;
 }
 
+void Auction(GameConfig game_config, Player players[4]){
+    Aucount aucount;
+    for (i = 0; i < 4; i++)
+    {
+        char choice[8];
+        bool action = FALSE;
+        
+        while action
+        {
+            scanf("Entrer PASSE pour passer ou ENCHERE pour encherir : %s", choice);
+            if (choice == "PASSE") {
+                aucount.player_choice[i] = FALSE;
+                action = TRUE;
+            }
+            else if(choice == "ENCHERE"){
+                aucount.player_choice[i] = TRUE;
+                scanf("Entrez une carte : %s", card);
+                scanf("Entrez une couleur : %s", color);
+                aucount.card = card;
+                aucount.color = color;
+                action = TRUE;
+            }
+            else {action = FALSE;}
+        }
+
+    }
+}
+
 void CreateGame(int nb_player, int nb_card)
 {
 	Player players[4];
@@ -52,4 +87,5 @@ void CreateGame(int nb_player, int nb_card)
     CreateTeams(players);
 	DistribCards(nb_player, nb_card, players);
     game_config.donneur = RandRange(0, 4);
+    Auction(game_config, players);
 }
