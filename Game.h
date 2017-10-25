@@ -3,6 +3,13 @@
 #include <stdio.h>
 #include "Player.h"
 
+typedef struct GameConfig GameConfig;
+struct GameConfig {
+    int levee_goal; //nombre de levées à réaliser
+    int atout;
+    int donneur;
+    int avancement[]; //nombre de levées en cours
+};
 
 /*
 Retourne le score de levée d'une équipe
@@ -12,14 +19,17 @@ int SumRaisesTeam(Player players[], int team) {
 	return (team == 0) ? players[0].nb_raises + players[1].nb_raises : players[2].nb_raises + players[3].nb_raises;
 }
 
-
+/*
+ Attribut à une valeur une carte correspondante
+ */
 void ConvertCard(int card_id, int card[2]) {
-	int card_color = (card_id + 1) / 13;
-	int card_number = card_id - (13 * (card_color));
-
-	card[0] = card_color;
-	card[1] = card_number;
-
+    if(card_id <= 51){
+        int card_color = (card_id + 1) / 13;
+        int card_number = card_id - (13 * (card_color));
+        
+        card[0] = card_color;
+        card[1] = card_number;
+    }
 }
 
 const char * ShowCard(int card_id) {
@@ -34,20 +44,12 @@ const char * ShowCard(int card_id) {
 	return string;
 }
 
-
 void CreateGame(int nb_player, int nb_card)
 {
 	Player players[4];
-
+    GameConfig game_config;
+    
+    CreateTeams(players);
 	DistribCards(nb_player, nb_card, players);
-
-	for (int i = 0; i < nb_player; i++)
-	{
-		for (int j = 0; j < 13; j++)
-			printf("%s pour joueur %d\n", ShowCard(players[i].deck[j]), i + 1);
-	}
-
-
-	//CreateTeams(players);
-	//ConfigGameType();
+    game_config.donneur = RandRange(0, 4);
 }

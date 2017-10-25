@@ -1,24 +1,13 @@
 #pragma once
 
-#include "Game.h"
-
-
 typedef struct Player Player;
 struct Player {
 	char name_player[1000];
 	char position;
 	int deck[13];
 	int role; // déclarant/mort/autres
-	int nombre_levee; //nombre de levée personnel
+	int nb_raises; //nombre de levée personnel
 	int nb_points_total;
-};
-
-typedef struct Partie Partie;
-struct Partie {
-	int levee_goal; //nombre de levées à réaliser
-	int atout;
-	int donneur;
-	int avancement[]; //nombre de levées en cours
 };
 
 /*
@@ -41,9 +30,15 @@ void DistribCards(int nb_player, int nb_cards, Player players[4])
 	}
 }
 
-
+/*
+ Créer les équipes en attribuant un nom et une position à chaque joueur
+ */
 void CreateTeams(Player players[])
 {
+    for (int i = 0; i < 4; i++) {
+        scanf("Entrer votre nom : %s", players[i].name_player);
+    }
+    
 	players[0].position = 'N';
 	players[1].position = 'S';
 	players[2].position = 'E';
