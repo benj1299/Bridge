@@ -7,7 +7,6 @@
 
 #include "Random.h"
 #include "Game.h"
-#include "Player.h"
 
 #define NB_CARDS 51
 

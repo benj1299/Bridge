@@ -11,26 +11,6 @@ struct Player {
 };
 
 /*
-Distribue les cartes et les sépare selon le nombre de joueurs dans un tableau
-*/
-void DistribCards(int nb_player, int nb_cards, Player players[4])
-{
-	int card_id = 0;
-
-	int* tossed_cards = InitNoDuplicates(0, nb_cards);
-	Mix(tossed_cards, nb_cards);
-
-	for (int i = 0; i < nb_player; i++)
-	{
-		for (int j = 0; j < 13; j++)
-		{
-			players[i].deck[j] = tossed_cards[card_id];
-			card_id++;
-		}
-	}
-}
-
-/*
  Créer les équipes en attribuant un nom et une position à chaque joueur
  */
 void CreateTeams(Player players[])
