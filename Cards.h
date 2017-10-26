@@ -8,7 +8,8 @@
 
 #ifndef Cards_h
 #define Cards_h
-#include "Random.h";
+#include "Random.h"
+#include <string.h>
 
 int* InitNoDuplicates(int a, int b);
 void Mix(int* numbers_array, int size);
@@ -50,19 +51,23 @@ void ConvertCard(int card_id, int card[2]) {
 /*
  Convertir un nombre en couleur de carte
  */
-int ConvertColor(char color[8]) {
-    if(color[8] == "PIQUE"){
+int ConvertColor(char color[8])
+{
+    char pique[] = "PIQUE", coeur[] = "COEUR", carreau[] = "CARREAU", trefle[] = "TREFLE";
+    
+    if(strcmp(color, pique) == 0){
         return 0;
     }
-    else if(color[8] == "COEUR"){
+    else if(strcmp(color, coeur) == 0){
         return 1;
     }
-    else if(color[8] == "CARREAU"){
-        return = 2;
+    else if(strcmp(color, carreau) == 0){
+        return 2;
     }
-    else if(color[8] == "TREFLE"){
+    else if(strcmp(color, trefle) == 0){
         return 3;
     }
+    return -1;
 }
 
 const char * ShowCard(int card_id) {

@@ -15,7 +15,7 @@ struct GameConfig {
 
 void CreateTeams(Player players[]);
 void DistribCards(int nb_player, int nb_cards, Player players[4]);
-void Auction(GameConfig game_config);
+int Auction(GameConfig game_config);
 
 /*
 Retourne le score de levée d'une équipe
@@ -36,5 +36,5 @@ void CreateGame(int nb_player, int nb_card)
     game_config.donneur = RandRange(0, 4);
     
     int winner = Auction(game_config);
-    players[winner].role = TRUE;
+    players[winner].role = 1;
 }

@@ -8,28 +8,30 @@
 
 #ifndef Aucount_h
 #define Aucount_h
+#include <string.h>
+#include "Game.h"
 
-void Auction(GameConfig game_config)
+int Auction(GameConfig game_config)
 {
     int contrat_tmp = 10; //temporaire mettre à 0
     int contrat = 11; //temporaire mettre à 0
-    int *card[7], *color[8];
+    char card[7], color[8];
     int winner;
     
-    for (i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++)
     {
-        char choice[8];
-        bool action = FALSE;
+        char choice[8], passe[] = "PASSE", enchere[] = "ENCHERE";
+        int action = 1;
         
-        while action
+        while (action)
         {
             scanf("Entrer PASSE pour passer ou ENCHERE pour encherir : %s", choice);
             
-            if (choice[8] == "PASSE") {
-                action = TRUE;
+            if (strcmp(choice, passe) == 0) {
+                action = 0;
             }
             
-            else if(choice[8] == "ENCHERE")
+            else if(strcmp(choice, enchere) == 0)
             {
                 scanf("Entrez une carte : %s", card);
                 scanf("Entrez une couleur : %s", color);
@@ -45,17 +47,17 @@ void Auction(GameConfig game_config)
                     game_config.atout = 4;// mettre une fonction ColorConvert(color);
                     winner = i;
                     
-                    action = TRUE;
+                    action = 0;
                 }
                 
                 else
                 {
-                    printf("L'enchère est trop basse, veuillez en sélectionner une plus haute ou passer");
-                    action = FALSE;
+                    printf("L'enchère est trop basse, veuillez en sélectionner une plus haute ou passer\n");
+                    action = 1;
                 }
             }
             
-            else {action = FALSE;}
+            else {action = 1;}
         }
     }
     
