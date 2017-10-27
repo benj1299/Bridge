@@ -8,11 +8,16 @@
 
 #ifndef Cards_h
 #define Cards_h
-#include "Random.h"
 #include <string.h>
+#include "Random.h"
+#include "Functions.h"
 
 int* InitNoDuplicates(int a, int b);
 void Mix(int* numbers_array, int size);
+void majuscule(char *chaine);
+
+const char card_name[13][7] = { "AS", "ROI", "DAME", "VALET", "DIX", "NEUF", "HUIT", "SEPT", "SIX", "CINQ", "QUATRE", "TROIS", "DEUX" };
+const char card_color[4][8] = { "PIQUE", "COEUR", "CARREAU", "TREFLE" };
 
 /*
  Distribue les cartes et les sépare selon le nombre de joueurs dans un tableau
@@ -49,10 +54,12 @@ void ConvertCard(int card_id, int card[2]) {
 }
 
 /*
- Convertir un nombre en couleur de carte
+ Convertir une couleur de carte en un nombre
  */
-int ConvertColor(char color[8])
+int ConvertColorString(char color[8])
 {
+    majuscule(&color[8]);
+    
     char pique[] = "PIQUE", coeur[] = "COEUR", carreau[] = "CARREAU", trefle[] = "TREFLE";
     
     if(strcmp(color, pique) == 0){
@@ -70,10 +77,26 @@ int ConvertColor(char color[8])
     return -1;
 }
 
+int ConvertCardsString(char card[8]){
+    int num_card;
+    for (int i = 0; i < 13; i++) {
+        if(strcmp(card, card_name) == 0){
+            num_card = i;
+        }
+    }
+    return card_name[num_card];
+}
+
+/*
+ Attribut à une carte une valeur correspondant
+ */
+int ReverseCardConvert(char *card, char *color){
+    ConvertColorString(color);
+    return 0; //temporaire
+}
+
+
 const char * ShowCard(int card_id) {
-    const char card_name[13][7] = { "AS", "ROI", "DAME", "VALET", "DIX", "NEUF", "HUIT", "SEPT", "SIX", "CINQ", "QUATRE", "TROIS", "DEUX" };
-    const char card_color[4][8] = { "PIQUE", "COEUR", "CARREAU", "TREFLE" };
-    
     int card[2];
     ConvertCard(card_id, card);
     
