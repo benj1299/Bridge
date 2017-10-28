@@ -16,6 +16,7 @@ struct GameConfig {
 void CreateTeams(Player players[]);
 void DistribCards(int nb_player, int nb_cards, Player players[4]);
 void majuscule(char *chaine);
+int ConvertCardsString(char card[8]);
 
 /*
 Retourne le score de levée d'une équipe
@@ -33,11 +34,12 @@ int Auction(GameConfig game_config)
     int contrat_tmp = 10; //temporaire mettre à 0
     int contrat = 0;
     char card[7], color[8];
-    int winner;
+    int winner = -1;
+    char passe[] = "PASSE", enchere[] = "ENCHERE";
     
     for (int i = 0; i < 4; i++)
     {
-        char choice[8], passe[] = "PASSE", enchere[] = "ENCHERE";
+        char choice[10];
         int action = 1;
         
         while (action)
@@ -57,15 +59,20 @@ int Auction(GameConfig game_config)
                 majuscule(card);
                 majuscule(color);
                 
-                //contrat_tmp = ReverseCardConvert(card, color);
+                if(ConvertCardsString(card) > 7){
+                    printf("La carte utilisée n'est pas autorisé.\n");
+                    continue;
+                }
+                
+                //contrat_tmp = ConvertCardsString(card) + ConvertColorString(color);
                 
                 if (contrat_tmp > contrat)
                 {
                     contrat = contrat_tmp;
                     contrat_tmp = 0;
                     
-                    game_config.levee_goal = 6 + card;
-                    game_config.atout = 4;// mettre une fonction ColorConvert(color);
+                    game_config.levee_goal = 6 + ConvertCardsString(card);
+                    game_config.atout = ConvertColorString(color);
                     winner = i;
                     
                     action = 0;
@@ -74,11 +81,11 @@ int Auction(GameConfig game_config)
                 else
                 {
                     printf("L'enchère est trop basse, veuillez en sélectionner une plus haute ou passer\n");
-                    action = 1;
+                    continue;
                 }
             }
             
-            else {action = 1;}
+            else {continue;}
         }
     }
     return winner;

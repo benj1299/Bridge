@@ -9,6 +9,7 @@
 #ifndef Cards_h
 #define Cards_h
 #include <string.h>
+#include <stdio.h>
 #include "Random.h"
 #include "Functions.h"
 
@@ -60,31 +61,27 @@ int ConvertColorString(char color[8])
 {
     majuscule(&color[8]);
     
-    char pique[] = "PIQUE", coeur[] = "COEUR", carreau[] = "CARREAU", trefle[] = "TREFLE";
-    
-    if(strcmp(color, pique) == 0){
-        return 0;
-    }
-    else if(strcmp(color, coeur) == 0){
-        return 1;
-    }
-    else if(strcmp(color, carreau) == 0){
-        return 2;
-    }
-    else if(strcmp(color, trefle) == 0){
-        return 3;
+    for (int i =0; i < 4; i++) {
+        if(strcmp(color, card_color[i]) == 0){
+            return i;
+        }
     }
     return -1;
 }
 
+/*
+ Convertir une carte en un nombre
+ */
 int ConvertCardsString(char card[8]){
-    int num_card;
-    for (int i = 0; i < 13; i++) {
-        if(strcmp(card, card_name) == 0){
-            num_card = i;
+    
+    majuscule(&card[8]);
+    
+    for (int i =0; i < 4; i++) {
+        if(strcmp(card, card_name[i]) == 0){
+            return i;
         }
     }
-    return card_name[num_card];
+    return -1;
 }
 
 /*
@@ -96,13 +93,13 @@ int ReverseCardConvert(char *card, char *color){
 }
 
 
-const char * ShowCard(int card_id) {
+/*
+ Parse la carte et renvoie une chaine lisible pour l'utilisateur de taille 50
+ */
+void ShowCard(int card_id, char string[50]) {
     int card[2];
     ConvertCard(card_id, card);
-    
-    char string[50];
     sprintf(string, "%s de %s\n", card_name[card[1]], card_color[card[0]]);
-    return string;
 }
 
 
