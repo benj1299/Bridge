@@ -92,17 +92,31 @@ int Auction(GameConfig game_config)
 }
 
 /*
+ End Game
+ */
+int EndGame(Player players[], GameConfig game_config){
+    return 1;
+}
+
+
+
+/*
  Déclancheur de partie
  */
 void CreateGame(int nb_player, int nb_card)
 {
-	Player players[4];
+    Player players[4];
     GameConfig game_config;
     
-    CreateTeams(players);
-	DistribCards(nb_player, nb_card, players);
-    game_config.donneur = RandRange(0, 4);
+    while (1){
+        CreateTeams(players);
+        DistribCards(nb_player, nb_card, players);
+        game_config.donneur = RandRange(0, 4);
+        
+        int winner = Auction(game_config);
+        players[winner].role = 1;
+        if (EndGame(players, game_config)) {break;}
+    }
     
-    int winner = Auction(game_config);
-    players[winner].role = 1;
+    printf("Merci d'avoir joué a notre super jeu, on vous kiff <3 !");
 }

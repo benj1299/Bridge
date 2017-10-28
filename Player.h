@@ -3,11 +3,11 @@
 typedef struct Player Player;
 struct Player {
 	char name_player[1000];
+    int nb_points_total;
 	char position;
 	int deck[13];
 	int role; // déclarant/mort/autres
 	int nb_raises; //nombre de levée personnel
-	int nb_points_total;
 };
 
 /*
