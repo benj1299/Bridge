@@ -18,6 +18,7 @@ void DistribCards(int nb_player, int nb_cards, Player players[4]);
 void majuscule(char *chaine);
 int ConvertCardsString(char card[8]);
 int SumRaisesTeam(Player players[], int team);
+int scan(char *chaine, int longueur);
 
 /*
  Jeu d'enchère de début de partie
@@ -26,18 +27,18 @@ int Auction(GameConfig game_config)
 {
     int contrat_tmp = 10; //temporaire mettre à 0
     int contrat = 0;
-    char card[7], color[8];
     int winner = -1;
     char passe[] = "PASSE", enchere[] = "ENCHERE";
     
     for (int i = 0; i < 4; i++)
     {
-        char choice[10];
         int action = 1;
         
         while (action)
         {
-            scanf("Entrer PASSE pour passer ou ENCHERE pour encherir : %s", choice);
+            char choice[8];
+            printf("Entrer PASSE pour passer ou ENCHERE pour encherir :");
+            scan(choice, 8);
             majuscule(choice);
             
             if (strcmp(choice, passe) == 0) {
@@ -46,8 +47,11 @@ int Auction(GameConfig game_config)
             
             else if(strcmp(choice, enchere) == 0)
             {
-                scanf("Entrez une carte : %s", card);
-                scanf("Entrez une couleur : %s", color);
+                char card[7], color[8];
+                printf("Entrez une carte :");
+                scan(card, 7);
+                printf("Entrez une couleur :");
+                scan(color, 8);
                 
                 majuscule(card);
                 majuscule(color);
@@ -101,18 +105,20 @@ int EndGame(Player players[], GameConfig game_config){
     for (int i = 0; i < 4; i++) {
         if (players[i].role == 1) {
             
-            if (i < 2) {team = SumRaisesTeam(players, 0)}
-            else {team = SumRaisesTeam(players, 1)}
+            if (i < 2) {team = SumRaisesTeam(players, 0);}
+            else {team = SumRaisesTeam(players, 1);}
             
             if (SumRaisesTeam(players, team) >= game_config.levee_goal) {
-                printf("%s a réaliser son contrat, l'équipe gagne");
+                printf("Le joueur %s a réaliser son contrat, l'équipe gagne", players[i].name_player);
             }
             
         }
     }
     
-    scanf("Taper STOP pour arrêter de jouer ou appuyer sur entrer pour continuer :", choice);
+    printf("Taper STOP pour arrêter de jouer ou appuyer sur entrer pour continuer :");
+    scan(choice, 5);
     majuscule(choice);
+    
     if(strcmp(choice,stop) == 0){return 1;}
     else
     {
@@ -144,4 +150,5 @@ void CreateGame(int nb_player, int nb_card)
     }
     
     printf("Merci d'avoir joué a notre super jeu, on vous kiff <3 !");
+    exit(0);
 }
