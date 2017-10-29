@@ -17,14 +17,7 @@ void CreateTeams(Player players[]);
 void DistribCards(int nb_player, int nb_cards, Player players[4]);
 void majuscule(char *chaine);
 int ConvertCardsString(char card[8]);
-
-/*
-Retourne le score de levée d'une équipe
-return int;
-*/
-int SumRaisesTeam(Player players[], int team) {
-	return (team == 0) ? players[0].nb_raises + players[1].nb_raises : players[2].nb_raises + players[3].nb_raises;
-}
+int SumRaisesTeam(Player players[], int team);
 
 /*
  Jeu d'enchère de début de partie
@@ -95,9 +88,41 @@ int Auction(GameConfig game_config)
  End Game
  */
 int EndGame(Player players[], GameConfig game_config){
-    return 1;
+    char choice[5], stop[] = "STOP";
+    int team;
+    
+    for (int i = 0; i < 4; i++) {
+        printf("%s a réalisé %d levées\n", players[i].name_player, players[i].nb_raises);
+    }
+    
+    printf("L'équipe Nord-Sud a réalisé %d levées et l'équipe Est-Ouest a réalisé %d levées\n",
+      SumRaisesTeam(players, 0), SumRaisesTeam(players, 1));
+    
+    for (int i = 0; i < 4; i++) {
+        if (players[i].role == 1) {
+            
+            if (i < 2) {team = SumRaisesTeam(players, 0)}
+            else {team = SumRaisesTeam(players, 1)}
+            
+            if (SumRaisesTeam(players, team) >= game_config.levee_goal) {
+                printf("%s a réaliser son contrat, l'équipe gagne");
+            }
+            
+        }
+    }
+    
+    scanf("Taper STOP pour arrêter de jouer ou appuyer sur entrer pour continuer :", choice);
+    majuscule(choice);
+    if(strcmp(choice,stop) == 0){return 1;}
+    else
+    {
+        for (int i=0; i < 4; i++) {
+            players[i].nb_points_total += players[i].nb_raises;
+        }
+        return 0;
+    }
+    
 }
-
 
 
 /*
