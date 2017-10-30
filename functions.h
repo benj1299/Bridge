@@ -22,7 +22,8 @@ void freeBuffer()
 }
 
 /*
- Sécurise face aux attaques buffer overflow et retire \n du fgets qui n'est pas esthétique
+ Stock un tableau de caractères vide et renvoie dans celui la reponse de scan().
+ Sécurise face aux attaques buffer overflow et retire \n du fgets qui n'est pas esthétique.
  */
 int scan(char *chaine, int longueur)
 {
