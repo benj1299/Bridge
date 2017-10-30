@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
 Renvoie un nombre aléatoire compris entre a et b
 return int;

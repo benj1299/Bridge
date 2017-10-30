@@ -14,7 +14,7 @@ struct GameConfig {
 };
 
 void CreateTeams(Player players[]);
-void DistribCards(int nb_player, int nb_cards, Player players[4]);
+void DistribCards(int nb_cards, Player players[4]);
 void majuscule(char *chaine);
 int ConvertCardsString(char card[8]);
 int SumRaisesTeam(Player players[], int team);
@@ -134,14 +134,15 @@ int EndGame(Player players[], GameConfig game_config){
 /*
  Déclancheur de partie
  */
-void CreateGame(int nb_player, int nb_card)
+void CreateGame()
 {
+    int nb_card = 51;
     Player players[4];
     GameConfig game_config;
     
-    while (1){
+    while(1) {
         CreateTeams(players);
-        DistribCards(nb_player, nb_card, players);
+        DistribCards(nb_card, players);
         game_config.donneur = RandRange(0, 4);
         
         int winner = Auction(game_config);

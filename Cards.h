@@ -23,14 +23,14 @@ const char card_color[4][8] = { "PIQUE", "COEUR", "CARREAU", "TREFLE" };
 /*
  Distribue les cartes et les sépare selon le nombre de joueurs dans un tableau
  */
-void DistribCards(int nb_player, int nb_cards, Player players[4])
+void DistribCards(int nb_cards, Player players[4])
 {
     int card_id = 0;
     
     int* tossed_cards = InitNoDuplicates(0, nb_cards);
     Mix(tossed_cards, nb_cards);
     
-    for (int i = 0; i < nb_player; i++)
+    for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 13; j++)
         {
@@ -38,6 +38,7 @@ void DistribCards(int nb_player, int nb_cards, Player players[4])
             card_id++;
         }
     }
+    free(tossed_cards);
 }
 
 
