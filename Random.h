@@ -16,10 +16,9 @@ return array;
 int* InitNoDuplicates(int a, int b) {
 	int size = b - a;
 	int* result = malloc((size) * sizeof(int));
-	int i = 0;
 
 	// Filling the array with ordered data
-	for (i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {
 		result[i] = i + a;
 	}
 	return result;

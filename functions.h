@@ -1,61 +1,51 @@
-//
-//  Functions.h
-//  Bridge
-//
-//  Created by Benjamin Kauffmann on 26/10/2017.
-//  Copyright © 2017 Benjamin Kauffmann. All rights reserved.
-//
+#pragma once
 
-#ifndef Functions_h
-#define Functions_h
 #include <ctype.h>
 #include <string.h>
 
-/*Vide le buffer*/
-void freeBuffer()
+// Vide le buffer
+void FreeBuffer()
 {
-    int c = 0;
-    while (c != '\n' && c != EOF)
-    {
-        c = getchar();
-    }
+	int c = 0;
+	while (c != '\n' && c != EOF)
+	{
+		c = getchar();
+	}
 }
 
 /*
- Stock un tableau de caractères vide et renvoie dans celui la reponse de scan().
- Sécurise face aux attaques buffer overflow et retire \n du fgets qui n'est pas esthétique.
- */
-int scan(char *chaine, int longueur)
+Stocke un tableau de caractères vide et renvoie dans celui-ci la reponse de Scan().
+Sécurise face aux attaques buffer overflow et retire \n du fgets qui n'est pas esthétique.
+*/
+int Scan(char *string, int size)
 {
-    char *positionEntree = NULL;
-    
-    if (fgets(chaine, longueur, stdin) != NULL)
-    {
-        positionEntree = strchr(chaine, '\n');
-        
-        if (positionEntree != NULL)
-        {
-            *positionEntree = '\0';
-        }
-        else {
-            freeBuffer();
-        }
-        return 1;
-    }
-    else
-    {
-        freeBuffer();
-        return 0;
-    }
+	char *entr_key_pos = NULL;
+
+	if (fgets(string, size, stdin) != NULL)
+	{
+		entr_key_pos = strchr(string, '\n');
+
+		if (entr_key_pos != NULL)
+		{
+			*entr_key_pos = '\0';
+		}
+		else {
+			FreeBuffer();
+		}
+		return 1;
+	}
+	else
+	{
+		FreeBuffer();
+		return 0;
+	}
 }
 
 
-void majuscule(char *chaine)
+void UpperCase(char *string)
 {
-    for (int i = 0 ; chaine[i] != '\0' ; i++)
-    {
-        chaine[i] = toupper(chaine[i]);
-    }
+	for (int i = 0; string[i] != '\0'; i++)
+	{
+		string[i] = toupper(string[i]);
+	}
 }
-
-#endif /* Functions_h */
