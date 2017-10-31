@@ -13,9 +13,9 @@ int RandRange(int a, int b) {
 Crée un tableau de nombres ordonnés de a à b
 return array;
 */
-int* InitNoDuplicates(int a, int b) {
+int * InitNoDuplicates(int a, int b) {
 	int size = b - a;
-	int* result = malloc((size) * sizeof(int));
+	int * result = malloc((size) * sizeof(int));
 
 	// Filling the array with ordered data
 	for (int i = 0; i < size; i++) {
@@ -28,7 +28,7 @@ int* InitNoDuplicates(int a, int b) {
 /*
 Mélange un tableau de nombres passé en argument
 */
-void Mix(int* numbers_array, int size) {
+void Mix(int * numbers_array, int size) {
 	int drawn_number = 0, temp = 0;
 
 	for (int i = 0; i < size; i++) {

@@ -17,9 +17,9 @@ void FreeBuffer()
 Stocke un tableau de caractères vide et renvoie dans celui-ci la reponse de Scan().
 Sécurise face aux attaques buffer overflow et retire \n du fgets qui n'est pas esthétique.
 */
-int Scan(char *string, int size)
+int Scan(char * string, int size)
 {
-	char *entr_key_pos = NULL;
+	char * entr_key_pos = NULL;
 
 	if (fgets(string, size, stdin) != NULL)
 	{
@@ -42,7 +42,7 @@ int Scan(char *string, int size)
 }
 
 
-void UpperCase(char *string)
+void UpperCase(char * string)
 {
 	for (int i = 0; string[i] != '\0'; i++)
 	{

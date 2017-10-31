@@ -6,9 +6,9 @@
 #include "Random.h"
 #include "Functions.h"
 
-int* InitNoDuplicates(int a, int b);
-void Mix(int* numbers_array, int size);
-void UpperCase(char *string);
+int * InitNoDuplicates(int a, int b);
+void Mix(int * numbers_array, int size);
+void UpperCase(char * string);
 
 const char card_name[13][7] = { "AS", "ROI", "DAME", "VALET", "DIX", "NEUF", "HUIT", "SEPT", "SIX", "CINQ", "QUATRE", "TROIS", "DEUX" };
 const char card_color[4][8] = { "PIQUE", "COEUR", "CARREAU", "TREFLE" };
@@ -20,7 +20,7 @@ void DistribCards(int nb_cards, Player players[4])
 {
 	int card_id = 0;
 
-	int* tossed_cards = InitNoDuplicates(0, nb_cards);
+	int * tossed_cards = InitNoDuplicates(0, nb_cards);
 	Mix(tossed_cards, nb_cards);
 
 	for (int i = 0; i < 4; i++)
@@ -68,7 +68,7 @@ Convertir une carte en un nombre
 */
 int ConvertCardsString(char card[8]) {
 
-	UpperCase(&card[8]);
+	UpperCase(card);
 
 	for (int i = 0; i < 4; i++) {
 		if (strcmp(card, card_name[i]) == 0) {
@@ -81,7 +81,7 @@ int ConvertCardsString(char card[8]) {
 /*
 Attribue à une carte une valeur correspondante
 */
-int ReverseCardConvert(char *card, char *color) {
+int ReverseCardConvert(char * card, char * color) {
 	ConvertColorString(color);
 	return 0; // temporaire
 }

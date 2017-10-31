@@ -20,10 +20,10 @@ struct GameConfig {
 
 void CreateTeams(Player players[]);
 void DistribCards(int nb_cards, Player players[4]);
-void UpperCase(char *string);
+void UpperCase(char * string);
 int ConvertCardsString(char card[8]);
 int SumRaisesTeam(Player players[], int team);
-int Scan(char *string, int size);
+int Scan(char * string, int size);
 char * NameTeam(int team);
 
 
