@@ -34,7 +34,7 @@ Jeu d'enchère de début de partie
 */
 int Auction(GameConfig game_config, Player players[4])
 {
-	int contrat_tmp = 10; // temporaire mettre à 0
+	int contrat_tmp = 0;
 	int contrat = 0;
 	int winner = -1;
 	char passe[] = "PASSE", enchere[] = "ENCHERE";
@@ -78,7 +78,7 @@ int Auction(GameConfig game_config, Player players[4])
 				}
 				
 
-				//contrat_tmp = ConvertCardString(card) + ConvertColorString(color);
+				contrat_tmp = ConvertCardsString(card) + abs(ConvertColorString(color) - 4);
 
 				if (contrat_tmp > contrat)
 				{
@@ -165,7 +165,6 @@ void CreateGame()
 
 	while (1) {
 		printf("Bienvenue sur le super Jeu de Bridge que l'on a concu !\n");
-
 
 		CreateTeams(players);
 		DistribCards(nb_card, players);

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdio.h>
 #include <ctype.h>
 #include <string.h>
 
@@ -48,4 +49,13 @@ void UpperCase(char * string)
 	{
 		string[i] = toupper(string[i]);
 	}
+}
+
+void Capitalize(char * string){
+    toupper(string[0]);
+    
+    for (int i = 1; string[i] != '\0'; i++)
+    {
+        string[i] = tolower(string[i]);
+    }
 }
