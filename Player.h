@@ -1,4 +1,8 @@
 #pragma once
+#include "Functions.h"
+
+int Scan(char * string, int size);
+void Capitalize(char * string);
 
 typedef struct Player Player;
 struct Player {
@@ -19,7 +23,7 @@ void CreateTeams(Player players[])
 	for (int i = 0; i < 4; i++) {
 		printf("Joueur %d, entrez votre nom : ", i + 1);
 		Scan(players[i].name, 100);
-		//Capitalize(players[i].name);
+		Capitalize(players[i].name);
 	}
 
 	players[0].position = 0; // N
