@@ -76,9 +76,9 @@ int Auction(GameConfig game_config, Player players[4])
 					printf("La carte utilisee n'est pas autorise.\n");
 					continue;
 				}
-				
 
-				contrat_tmp = ConvertCardsString(card) + abs(ConvertColorString(color) - 4);
+
+				contrat_tmp = ConvertCardString(card) + abs(ConvertColorString(color) - 4);
 
 				if (contrat_tmp > contrat)
 				{

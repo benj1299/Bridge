@@ -51,11 +51,11 @@ void UpperCase(char * string)
 	}
 }
 
-void Capitalize(char * string){
-    toupper(string[0]);
-    
-    for (int i = 1; string[i] != '\0'; i++)
-    {
-        string[i] = tolower(string[i]);
-    }
+void Capitalize(char * string) {
+	toupper(string[0]);
+
+	for (int i = 1; string[i] != '\0'; i++)
+	{
+		string[i] = tolower(string[i]);
+	}
 }
