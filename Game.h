@@ -5,10 +5,6 @@
 #include <string.h>
 //#include <wchar.h>
 
-#include "Player.h"
-#include "Cards.h"
-#include "Functions.h"
-
 
 typedef struct GameConfig GameConfig;
 struct GameConfig {
@@ -18,10 +14,16 @@ struct GameConfig {
 	int avancement[]; //nombre de levées en cours
 };
 
+
+#include "Functions.h"
+#include "Player.h"
+#include "Cards.h"
+
+
 void CreateTeams(Player players[]);
 void DistribCards(int nb_cards, Player players[4]);
 void UpperCase(char * string);
-int ConvertCardsString(char card[8]);
+int ConvertCardString(char card[8]);
 int SumRaisesTeam(Player players[], int team);
 int Scan(char * string, int size);
 char * NameTeam(int team);
@@ -44,7 +46,7 @@ int Auction(GameConfig game_config, Player players[4])
 		while (action)
 		{
 			char choice[8];
-			printf("Entrez PASSE pour passer ou ENCHERE pour enchérir : ");
+			printf("Entrez PASSE pour passer ou ENCHERE pour encherir : ");
 			Scan(choice, 8);
 			UpperCase(choice);
 
@@ -52,9 +54,8 @@ int Auction(GameConfig game_config, Player players[4])
 				action = 0;
 			}
 			else if (strcmp(choice, enchere) != 0 && strcmp(choice, passe) != 0 && strlen(choice) > 0) {
-				printf("Le mot utilisé n'est pas pris en charge.");
-				action = 0;
-
+				printf("Le mot utilise n'est pas pris en charge.\n");
+				continue;
 			}
 			else if (strcmp(choice, enchere) == 0)
 			{
@@ -62,26 +63,29 @@ int Auction(GameConfig game_config, Player players[4])
 
 				printf("Entrez une couleur de carte : ");
 				Scan(color, 8);
-
-				printf("Entrez une carte : ");
-				Scan(card, 7);
-
 				UpperCase(color);
-				UpperCase(card);
-
-				if (ConvertCardsString(card) > 7) {
-					printf("La carte utilisée n'est pas autorisé.\n");
+				if (ConvertColorString(color) == -1) {
+					printf("La couleur de carte utilisee n'est pas autorise.\n");
 					continue;
 				}
 
-				//contrat_tmp = ConvertCardsString(card) + ConvertColorString(color);
+				printf("Entrez une carte : ");
+				Scan(card, 7);
+				UpperCase(card);
+				if (ConvertCardString(card) > 7) {
+					printf("La carte utilisee n'est pas autorise.\n");
+					continue;
+				}
+				
+
+				//contrat_tmp = ConvertCardString(card) + ConvertColorString(color);
 
 				if (contrat_tmp > contrat)
 				{
 					contrat = contrat_tmp;
 					contrat_tmp = 0;
 
-					game_config.levee_goal = 6 + ConvertCardsString(card);
+					game_config.levee_goal = 6 + ConvertCardString(card);
 					game_config.atout = ConvertColorString(color);
 					winner = i;
 
@@ -90,7 +94,7 @@ int Auction(GameConfig game_config, Player players[4])
 
 				else
 				{
-					printf("\nL'enchère est trop basse, veuillez en sélectionner une plus haute ou passer.\n");
+					printf("\nL'enchere est trop basse, veuillez en selectionner une plus haute ou passer.\n");
 					continue;
 				}
 			}
@@ -105,17 +109,17 @@ int Auction(GameConfig game_config, Player players[4])
 /*
 End Game
 */
-int EndGame(Player players[], GameConfig game_config) {
+int EndGame(GameConfig game_config, Player players[4]) {
 	char choice[5], stop[] = "STOP";
 	int team;
 
-	printf("\n");
+	printf("\n----\n\n");
 
 	for (int i = 0; i < 4; i++) {
-		printf("%s a réalisé %d levées.\n", players[i].name, players[i].nb_raises);
+		printf("%s a realise %d levees.\n", players[i].name, players[i].nb_raises);
 	}
 
-	printf("\nL'équipe Nord-Sud a réalisé %d levées et l'équipe Est-Ouest a réalisé %d levées.\n",
+	printf("\nL'equipe Nord-Sud a realise %d levees et l'equipe Est-Ouest a realise %d levees.\n",
 		SumRaisesTeam(players, 0), SumRaisesTeam(players, 1));
 
 	for (int i = 0; i < 4; i++) {
@@ -126,15 +130,15 @@ int EndGame(Player players[], GameConfig game_config) {
 
 			if (SumRaisesTeam(players, team) >= game_config.levee_goal)
 			{
-				printf("\nLe joueur %s a réalisé son contrat, l'équipe a gagné !\n", players[i].name);
+				printf("\nLe joueur %s a realise son contrat, l'equipe a gagne !\n", players[i].name);
 			}
 			else {
-				printf("Le contrat n'as pas été rempli, l'équipe %s a gagné !", NameTeam(abs(team - 1)));
+				printf("Le contrat n'a pas ete rempli, l'equipe %s a gagne !", NameTeam(abs(team - 1)));
 			}
 		}
 	}
 
-	printf("\nTapez STOP pour arrêter de jouer ou appuyez sur Entrer pour continuer : ");
+	printf("\nTapez STOP pour arreter de jouer ou appuyez sur Entrer pour continuer : ");
 	Scan(choice, 5);
 	UpperCase(choice);
 
@@ -160,22 +164,22 @@ void CreateGame()
 	GameConfig game_config;
 
 	while (1) {
-		printf("Bienvenue sur le super Jeu de Bridge que l'on a conçu !\n");
+		printf("Bienvenue sur le super Jeu de Bridge que l'on a concu !\n");
+
 
 		CreateTeams(players);
 		DistribCards(nb_card, players);
 		game_config.donneur = RandRange(0, 4);
 
-		printf("\nPhase d'enchère :\n");
+		printf("\n\nPhase d'enchere :\n");
 		int winner = Auction(game_config, players);
-		players[winner].role = 1;
 
-		printf("\nJeu de la carte :\n");
+		printf("\n\nJeu de la carte :\n");
 
 
-		if (EndGame(players, game_config)) { break; }
+		if (EndGame(game_config, players)) { break; }
 	}
 
-	printf("\nMerci d'avoir joué a notre super jeu, on vous kiffe <3 !");
+	printf("\nMerci d'avoir joue a notre super jeu, on vous kiffe <3 !");
 	exit(0);
 }

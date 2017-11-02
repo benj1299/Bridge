@@ -66,7 +66,7 @@ int ConvertColorString(char color[8])
 /*
 Convertir une carte en un nombre
 */
-int ConvertCardsString(char card[8]) {
+int ConvertCardString(char card[8]) {
 
 	UpperCase(card);
 

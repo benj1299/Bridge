@@ -7,7 +7,7 @@ struct Player {
 
 	int position;
 	int deck[13];
-	int role; // déclarant / mort / flancs
+	int role; // déclarant (1) / mort (-1) / flancs (0)
 	int nb_raises; // nombre de levées personnelles
 };
 
