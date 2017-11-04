@@ -1,10 +1,6 @@
 // main.c: Defines the entry point for the console application.
-
 #include <time.h>
-
 #include "Game.h"
-
-void CreateGame(void);
 
 int main(void)
 {
