@@ -82,16 +82,27 @@ int ConvertCardString(char card[8]) {
 Attribue à une carte une valeur correspondante
 */
 int ReverseCardConvert(char * card, char * color) {
-	ConvertColorString(color);
-	return 0; // temporaire
+	int color_nbr = ConvertColorString(color);
+	int card_nbr = ConvertCardString(card);
+
+	return card_nbr * (color_nbr + 1);
 }
 
 
 /*
-Parse la carte et renvoie une chaîne lisible pour l'utilisateur de taille 22
+Parse la carte et renvoie une chaîne lisible pour l'utilisateur de taille 20
 */
-void ShowCard(int card_id, char string[22]) {
+void ShowCard(int card_id, char string[20]) {
 	int card[2];
 	ConvertCard(card_id, card);
-	sprintf(string, "%s de %s\n", card_name[card[1]], card_color[card[0]]);
+	sprintf(string, "%s de %s", card_name[card[1]], card_color[card[0]]);
+}
+
+
+void ShowDeck(Player player) {
+	char parsed_card[20];
+	for (int i = 0; i < 13; i++) {
+		ShowCard(player.deck[i], parsed_card);
+		printf("%s ; ", parsed_card);
+	}
 }
