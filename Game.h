@@ -18,6 +18,7 @@ struct GameConfig {
 #include "Functions.h"
 #include "Player.h"
 #include "Cards.h"
+#include "Battle.h"
 
 
 void CreateTeams(Player players[]);
@@ -174,6 +175,7 @@ void CreateGame()
 		int winner = Auction(game_config, players);
 
 		printf("\n\nJeu de la carte :\n");
+		Battle(game_config, players, winner);
 
 
 		if (EndGame(game_config, players)) { break; }

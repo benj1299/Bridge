@@ -106,6 +106,7 @@
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battle.h" />
     <ClInclude Include="Cards.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="Game.h" />
