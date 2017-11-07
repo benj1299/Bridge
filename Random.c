@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 /*
 Renvoie un nombre aléatoire compris entre a et b
 return int;

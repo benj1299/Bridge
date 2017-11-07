@@ -4,9 +4,7 @@
 //#include <wchar.h>
 
 #include "Game.h"
-#include "Functions.h"
-#include "Player.h"
-#include "Cards.h"
+#include "Battle.h"
 
 /*
 Jeu d'enchère de début de partie
@@ -51,14 +49,14 @@ int Auction(GameConfig game_config, Player players[4])
 				printf("Entrez une carte : ");
 				Scan(card, 7);
 				UpperCase(card);
+                
 				if (ConvertCardString(card) > 7) {
 					printf("La carte utilisee n'est pas autorise.\n");
 					continue;
 				}
-
-
+                
 				contrat_tmp = ConvertCardString(card) + abs(ConvertColorString(color) - 4);
-
+               
 				if (contrat_tmp > contrat)
 				{
 					contrat = contrat_tmp;
@@ -88,7 +86,7 @@ int Auction(GameConfig game_config, Player players[4])
 /*
 End Game
 */
-int EndGame(GameConfig game_config, Player players[4]) {
+int EndGame(Player players[4], GameConfig game_config) {
 	char choice[5], stop[] = "STOP";
 	int team;
 
@@ -121,8 +119,7 @@ int EndGame(GameConfig game_config, Player players[4]) {
 	Scan(choice, 5);
 	UpperCase(choice);
 
-	if (strcmp(choice, stop) == 0) { return 1; }
-	else
+	if (strcmp(choice, stop) != 0)
 	{
 		for (int i = 0; i < 4; i++) {
 			players[i].nb_points_total += players[i].nb_raises;
@@ -130,6 +127,7 @@ int EndGame(GameConfig game_config, Player players[4]) {
 		return 0;
 	}
 
+    return 1;
 }
 
 /*
@@ -154,8 +152,7 @@ void CreateGame()
 		printf("\n\nJeu de la carte :\n");
 		Battle(game_config, players, winner);
 
-
-		if (EndGame(game_config, players)) { break; }
+		if (EndGame(players, game_config)) { break; }
 	}
 
 	printf("\nMerci d'avoir joue a notre super jeu, on vous kiffe <3 !");
