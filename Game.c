@@ -152,6 +152,7 @@ void CreateGame()
 		int winner = Auction(game_config, players);
 
 		printf("\n\nJeu de la carte :\n");
+		Battle(game_config, players, winner);
 
 
 		if (EndGame(game_config, players)) { break; }
