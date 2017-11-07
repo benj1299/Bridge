@@ -4,17 +4,6 @@
 #include "Player.h"
 #include "Functions.h"
 
-typedef struct Player Player;
-struct Player {
-	char name[100];
-	int nb_points_total;
-
-	int position;
-	int deck[13];
-	int role; // déclarant (1) / mort (-1) / flancs (0)
-	int nb_raises; // nombre de levées personnelles
-};
-
 /*
 Crée les équipes en attribuant un nom et une position à chaque joueur
 */
@@ -32,6 +21,9 @@ void CreateTeams(Player players[])
 	players[3].position = 3; // W
 }
 
+/*
+Retourne le nom de l'équipe selon son numéro
+*/
 char * NameTeam(int team)
 {
 	return (team == 0) ? "Nord-Sud" : "Est-Ouest";

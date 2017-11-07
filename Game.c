@@ -8,14 +8,6 @@
 #include "Player.h"
 #include "Cards.h"
 
-typedef struct GameConfig GameConfig;
-struct GameConfig {
-	int levee_goal; //nombre de levées à réaliser
-	int atout;
-	int donneur;
-	int avancement[]; //nombre de levées en cours
-};
-
 /*
 Jeu d'enchère de début de partie
 */
@@ -139,7 +131,6 @@ int EndGame(GameConfig game_config, Player players[4]) {
 	}
 
 }
-
 
 /*
 Déclencheur de partie
