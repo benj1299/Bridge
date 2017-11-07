@@ -82,7 +82,7 @@ int ConvertCardString(char card[8]) {
 /*
  Attribue à une carte une valeur correspondante
  */
-int ReverseCardConvert(char * card, char * color) {
+int ReverseCardConvert(char card[8], char color[8]) {
     int color_nbr = ConvertColorString(color);
     int card_nbr = ConvertCardString(card);
     
@@ -101,12 +101,42 @@ void ShowCard(int card_id, char string[20]) {
     sprintf(string, "%s de %s", card_name[card[1]], card_color[card[0]]);
 }
 
-
+/*
+ Affiche les cartes d'un joueur
+ */
 void ShowDeck(Player player) {
     char parsed_card[20];
     for (int i = 0; i < 13; i++) {
         ShowCard(player.deck[i], parsed_card);
         printf("%s ; ", parsed_card);
+    }
+}
+
+/*
+ Demande à l'utilisateur la carte et la couleur qu'il va jouer
+ */
+void SelectCardBattle(char entame_color[], char entame_nbr[])
+{
+    while (1)
+    {
+        printf("\nEntrez une couleur de carte pour l'entame : ");
+        Scan(entame_color, 8);
+        UpperCase(entame_color);
+        if (ConvertColorString(entame_color) == -1) {
+            printf("La couleur de carte utilisee n'est pas autorise.\n");
+            continue;
+        }
+        
+        printf("Entrez la valeur de l'entame : ");
+        Scan(entame_nbr, 7);
+        UpperCase(entame_nbr);
+        if (ConvertCardString(entame_nbr) == -1) {
+            printf("La carte utilisee n'est pas autorise.\n");
+            continue;
+        }
+        
+        /*vérifier qu'il possède bien la carte (par hache assoiciatif à l'indice et couleur de la carte dans un pointeur)*/
+        break;
     }
 }
 

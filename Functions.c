@@ -43,7 +43,9 @@ int Scan(char * string, int size)
 	}
 }
 
-
+/*
+ Renvoie une string en majuscule
+ */
 void UpperCase(char * string)
 {
 	for (int i = 0; string[i] != '\0'; i++)
@@ -52,6 +54,9 @@ void UpperCase(char * string)
 	}
 }
 
+/*
+ Renvoie une string avec la première lettre en majuscule 
+ */
 void Capitalize(char * string) {
 	toupper(string[0]);
 
