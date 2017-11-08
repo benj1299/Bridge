@@ -12,3 +12,4 @@ int  ReverseCardConvert(char card[8], char color[8]);
 void ShowCard(int card_id, char string[22]);
 void ShowDeck(Player player);
 void SelectCardBattle(char entame_color[], char entame_nbr[]);
+void SortCards(int card_id[]);

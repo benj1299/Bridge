@@ -4,7 +4,8 @@
 
 #include "Cards.h"
 
-const char card_name[13][7] = { "AS", "ROI", "DAME", "VALET", "DIX", "NEUF", "HUIT", "SEPT", "SIX", "CINQ", "QUATRE", "TROIS", "DEUX" };
+const char card_name[13][7] = { "DEUX", "TROIS", "QUATRE", "CINQ", "SIX", "SEPT", "HUIT",
+    "NEUF", "DIX", "VALET", "DAME", "ROI", "AS" };
 const char card_color[4][8] = { "PIQUE", "COEUR", "CARREAU", "TREFLE" };
 
 /*
@@ -24,6 +25,7 @@ void DistribCards(int nb_cards, Player players[4])
             players[i].deck[j] = tossed_cards[card_id];
             card_id++;
         }
+        SortCards(players[i].deck);
     }
     free(tossed_cards);
 }
@@ -33,8 +35,8 @@ void DistribCards(int nb_cards, Player players[4])
  Attribue à une valeur une carte correspondante
  */
 void ConvertCard(int card_id, int card[2]) {
-    if (card_id <= 51) {
-        int card_color = (card_id + 1) / 13;
+    if (card_id < 53) {
+        int card_color = (card_id) / 13;
         int card_number = card_id - (13 * (card_color));
         
         card[0] = card_color;
@@ -88,7 +90,7 @@ int ReverseCardConvert(char card[8], char color[8]) {
     
     printf("\n\ncolornbr : %d, cardnbr : %d\n\n", color_nbr, card_nbr);
     
-    return (card_nbr) * (color_nbr + 1);
+    return ((card_nbr) * (color_nbr + 1)) - 1;
 }
 
 
@@ -102,18 +104,39 @@ void ShowCard(int card_id, char string[20]) {
 }
 
 /*
- Affiche les cartes d'un joueur
+ Trie les cartes par couleur
  */
-void ShowDeck(Player player) {
+void SortCards(int card_id[])
+{
+    int i = 0, j = 0, tmp = 0;
+    
+    for(i = 0; i < 12 ; i++)
+    {
+        for(j=i; j < 13; j++)
+        {
+            if((card_id[j]/13) < (card_id[i]/13))
+            {
+                tmp = card_id[i];
+                card_id[i] = card_id[j];
+                card_id[j] = tmp;
+            }
+        }
+    }
+}
+
+/*
+ Affiche les cartes d'un joueur triées par couleur
+ */
+void ShowDeck(Player players) {
     char parsed_card[20];
     for (int i = 0; i < 13; i++) {
-        ShowCard(player.deck[i], parsed_card);
+        ShowCard(players.deck[i], parsed_card);
         printf("%s ; ", parsed_card);
     }
 }
 
 /*
- Demande à l'utilisateur la carte et la couleur qu'il va jouer
+ Demande aux utilisateurs la carte et la couleur qu'ils veulent jouer
  */
 void SelectCardBattle(char entame_color[], char entame_nbr[])
 {

@@ -23,7 +23,8 @@ int Auction(GameConfig game_config, Player players[4])
 		while (action)
 		{
 			char choice[8];
-			printf("Entrez PASSE pour passer ou ENCHERE pour encherir : ");
+            ShowDeck(players[i]);
+			printf("\nEntrez PASSE pour passer ou ENCHERE pour encherir : ");
 			Scan(choice, 8);
 			UpperCase(choice);
 
