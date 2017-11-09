@@ -30,45 +30,44 @@ int SumRaisesTeam(Player players[], int team)
 }
 
 /*
- Place correctement les joueurs et leur assigne les bons roles
- */
+Place correctement les joueurs et leur assigne les bons roles
+*/
 void PlayerSitting(Player players[], int winner, int *westmost_player, int *mort)
 {
-    players[winner].role = 1; // déclarant
-    *westmost_player = 0;
-    *mort = 0;
-    
-    for (int i = 0; i < 4; i++) {
-        if (i != winner) {
-            if ((winner > 1 && i > 1) || (winner < 2 && i < 2))
-            {
-                players[i].role = -1; // mort
-                players[i].position = 0;
-                *mort = i;
-            }
-            else {
-                players[i].role = 0; // flancs
-                if (*westmost_player) {
-                    players[i].position = 3;
-                    *westmost_player = i;
-                }
-                else
-                {
-                    players[i].position = 2;
-                    *westmost_player = 1;
-                }
-            }
-        }
-        else
-            players[i].position = 1;
-    }
+	players[winner].role = 1; // déclarant
+	*westmost_player = 0;
+	*mort = 0;
+
+	for (int i = 0; i < 4; i++) {
+		if (i != winner) {
+			if ((winner > 1 && i > 1) || (winner < 2 && i < 2))
+			{
+				players[i].role = -1; // mort
+				players[i].position = 0;
+				*mort = i;
+			}
+			else {
+				players[i].role = 0; // flancs
+				if (*westmost_player) {
+					players[i].position = 3;
+					*westmost_player = i;
+				}
+				else
+				{
+					players[i].position = 2;
+					*westmost_player = 1;
+				}
+			}
+		}
+		else
+			players[i].position = 1;
+	}
 }
 
 /*
- Retourne le nom de l'équipe selon son numéro
- */
+Retourne le nom de l'équipe selon son numéro
+*/
 char * NameTeam(int team)
 {
-    return (team == 0) ? "Nord-Sud" : "Est-Ouest";
+	return (team == 0) ? "Nord-Sud" : "Est-Ouest";
 }
-

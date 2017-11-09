@@ -11,6 +11,6 @@ void  INThandler(int sig);
 int main(void)
 {
 	srand(time(NULL));
-    CreateGame();
+	CreateGame();
 	return 0;
 }

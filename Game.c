@@ -23,7 +23,7 @@ int Auction(GameConfig game_config, Player players[4])
 		while (action)
 		{
 			char choice[8];
-            ShowDeck(players[i]);
+			ShowDeck(players[i]);
 			printf("\nEntrez PASSE pour passer ou ENCHERE pour encherir : ");
 			Scan(choice, 8);
 			UpperCase(choice);
@@ -50,14 +50,14 @@ int Auction(GameConfig game_config, Player players[4])
 				printf("Entrez une carte : ");
 				Scan(card, 7);
 				UpperCase(card);
-                
+
 				if (ConvertCardString(card) > 7) {
 					printf("La carte utilisee n'est pas autorise.\n");
 					continue;
 				}
-                
+
 				contrat_tmp = ConvertCardString(card) + abs(ConvertColorString(color) - 4);
-               
+
 				if (contrat_tmp > contrat)
 				{
 					contrat = contrat_tmp;
@@ -84,9 +84,6 @@ int Auction(GameConfig game_config, Player players[4])
 }
 
 
-/*
-End Game
-*/
 int EndGame(Player players[4], GameConfig game_config) {
 	char choice[5], stop[] = "STOP";
 	int team;
@@ -128,7 +125,7 @@ int EndGame(Player players[4], GameConfig game_config) {
 		return 0;
 	}
 
-    return 1;
+	return 1;
 }
 
 /*
