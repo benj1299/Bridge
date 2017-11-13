@@ -28,16 +28,25 @@ void Battle(GameConfig game_config, Player players[], int winner)
 	printf("\n\nEntame : %s", parsed_entame);
 
 	// Chaque joueur joue sur l'entame
-	for (int i = westmost_player; i < westmost_player; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		printf("\nA vous de jouer %s, voici vos cartes :\n", players[i].name);
-		ShowDeck(players[westmost_player]);
+        if (i == westmost_player) {
+            i++;
+            continue;
+        }
+        
+		printf("\n\nA vous de jouer %s, voici vos cartes :\n\n", players[i].name);
+		ShowDeck(players[i]);
 		SelectCardBattle(entame_color, entame_nbr);
-		for (int j = 0; j < 13; j++) {
-			if (players[i].deck[j] == cards_played) {
+		
+        for (int j = 0; j < 13; j++)
+        {
+			if (players[i].deck[j] == cards_played)
+            {
 				players[i].deck[j] = -1;
 				break;
 			}
 		}
+        
 	}
 }

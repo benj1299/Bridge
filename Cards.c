@@ -13,7 +13,7 @@ Distribue les cartes et les sépare selon le nombre de joueurs dans un tableau
 */
 void DistribCards(int nb_cards, Player players[4])
 {
-	int card_id = 0;
+	unsigned int card_id = 0;
 
 	int * tossed_cards = InitNoDuplicates(0, nb_cards);
 	Mix(tossed_cards, nb_cards);
@@ -34,10 +34,10 @@ void DistribCards(int nb_cards, Player players[4])
 /*
 Attribue à une valeur une carte correspondante
 */
-void ConvertCard(int card_id, int card[2]) {
+void ConvertCard(unsigned int card_id, int card[2]) {
 	if (card_id < 53) {
-		int card_color = (card_id) / 13;
-		int card_number = card_id - (13 * (card_color));
+		unsigned int card_color = (card_id) / 13;
+		unsigned int card_number = card_id - (13 * (card_color));
 
 		card[0] = card_color;
 		card[1] = card_number;
@@ -97,7 +97,7 @@ int ReverseCardConvert(char card[8], char color[8]) {
 /*
 Parse la carte et renvoie une chaîne lisible pour l'utilisateur de taille 20
 */
-void ShowCard(int card_id, char string[20]) {
+void ShowCard(unsigned int card_id, char string[20]) {
 	int card[2];
 	ConvertCard(card_id, card);
 	sprintf(string, "%s de %s", card_name[card[1]], card_color[card[0]]);
@@ -108,7 +108,7 @@ Trie les cartes par couleur
 */
 void SortCards(int card_id[])
 {
-	int i = 0, j = 0, tmp = 0;
+	unsigned int i = 0, j = 0, tmp = 0;
 
 	for (i = 0; i < 12; i++)
 	{
@@ -133,6 +133,7 @@ void ShowDeck(Player players) {
 		ShowCard(players.deck[i], parsed_card);
 		printf("%s ; ", parsed_card);
 	}
+    printf("\n");
 }
 
 /*
