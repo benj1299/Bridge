@@ -100,7 +100,9 @@ Parse la carte et renvoie une chaîne lisible pour l'utilisateur de taille 20
 void ShowCard(unsigned int card_id, char string[20]) {
 	int card[2];
 	ConvertCard(card_id, card);
-	sprintf(string, "%s de %s", card_name[card[1]], card_color[card[0]]);
+    if (card_id < 53) {
+     sprintf(string, "%s de %s", card_name[card[1]], card_color[card[0]]);
+    }
 }
 
 /*
@@ -131,7 +133,9 @@ void ShowDeck(Player players) {
 	char parsed_card[20];
 	for (int i = 0; i < 13; i++) {
 		ShowCard(players.deck[i], parsed_card);
-		printf("%s ; ", parsed_card);
+        if (players.deck[i] < 53) {
+            printf("%s ; ", parsed_card);
+        }
 	}
     printf("\n");
 }

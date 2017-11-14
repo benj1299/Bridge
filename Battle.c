@@ -15,38 +15,47 @@ void Battle(GameConfig game_config, Player players[], int winner)
 	printf("Joueur %d : role -> %d, pos -> %d\n", i + 1, players[i].role, players[i].position);
 	*/
 
+    printf("\nVoici le jeu du mort (joueur %s) : \n", players[mort].name);
+    ShowDeck(players[mort]);
+    
 	printf("\nA vous de jouer %s, voici vos cartes :\n", players[westmost_player].name);
 	ShowDeck(players[westmost_player]);
 	SelectCardBattle(entame_color, entame_nbr);
 	cards_played = ReverseCardConvert(entame_nbr, entame_color);
 
-	printf("\nVoici le jeu du mort (joueur %s) : \n", players[mort].name);
-	ShowDeck(players[mort]);
-
 	// Affiche la carte selectionnée par le joueur
 	ShowCard(cards_played, parsed_entame);
 	printf("\n\nEntame : %s", parsed_entame);
 
-	// Chaque joueur joue sur l'entame
-	for (int i = 0; i < 4; i++)
-	{
-        if (i == westmost_player) {
-            i++;
-            continue;
+    EntameGame(westmost_player, players, cards_played, entame_color, entame_nbr);
+}
+
+void EntameGame(int first, Player players[], int cards_played, int entame_color[], int entame_nbr[]){
+    int i = 0;
+    while (i < 4)
+    {
+        if (i == first) {
+            if (first == 3) {
+                i = 4;
+                continue;
+            }
+            else{
+                i++;
+            }
         }
         
-		printf("\n\nA vous de jouer %s, voici vos cartes :\n\n", players[i].name);
-		ShowDeck(players[i]);
-		SelectCardBattle(entame_color, entame_nbr);
-		
+        printf("\n\nA vous de jouer %s, voici vos cartes :\n\n", players[i].name);
+        ShowDeck(players[i]);
+        SelectCardBattle(entame_color, entame_nbr);
+        
         for (int j = 0; j < 13; j++)
         {
-			if (players[i].deck[j] == cards_played)
+            if (players[i].deck[j] == cards_played)
             {
-				players[i].deck[j] = -1;
-				break;
-			}
-		}
-        
-	}
+                players[i].deck[j] = 100;
+                break;
+            }
+        }
+        i++;
+    }
 }
