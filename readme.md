@@ -3,22 +3,23 @@ Un petit jeu de Bridge fait avec :heart: par des étudiants de Descartes Paris V
 
 ## Déroulement :sparkles:
 
-### Début du match :boom:
-  * On définit le type de Bridge joué, selon celui-ci le déroulement diffèrera
-  * Chaque joueur entre son nom -> Sa position lui est attribué
+### :boom: Début du match :boom:
+  * Définion du type de Bridge joué, selon celui-ci le déroulement diffèrera
+  * Chaque joueur entre son nom -> Sa position lui est ensuite attribué
   * Ses cartes lui sont distribuées
   * Attribution du donneur aléatoirement
 
-### Enchères :boom:
-  * Proposition de nombre de levée et couleur d'enchère pour chaque joueur ou PASSE.
-  * Affichage de l'enchère précédente la plus fortes
-  * Une fois l'enchère terminée quand il y a 3 PASSE successives, déclaration du contrat.
+### :boom: Enchères :boom:
+  * Chaque joueur entre une proposition de nombre de levée et de couleur d'enchère ou "PASSE".
+  * Affichage de l'enchère précédente la plus forte
+  * Une fois l'enchère terminée, quand il y a eu 3 "PASSE" successifs, déclaration du contrat.
 
-### Début de la Partie :boom:
+### :boom: Début de la Partie :boom:
   * Le joueur à droite du déclarant commence
   * Il entre une carte et les joueurs également
   * Le joueur qui a gagné la levée commmence le prochain tour
 
-### Fin de la Partie :boom:
-  * Les levées sont comptabilisées et le nombre de points par équipe et joueur est affiché
-  * Possibilité de recommencer une partie soit en conservant les joueurs (et points) soit en réinitialisant.
+### :boom: Fin de la Partie :boom:
+  * Les levées sont comptabilisées ainsi que le nombre de points par équipe
+  * Affichage du classement des joueurs et équipes
+  * Possibilité de recommencer une partie soit en conservant les joueurs (et points) soit en la réinitialisant.

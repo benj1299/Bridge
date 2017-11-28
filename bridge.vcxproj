@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{126EC985-8DBA-446F-8789-8C28C067E530}</ProjectGuid>
+    <ProjectGuid>{4C82D897-BD4F-40DA-A59B-11C2CB8142A1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -99,12 +99,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Battle.c" />
+    <ClCompile Include="Cards.c" />
+    <ClCompile Include="Functions.c" />
+    <ClCompile Include="Game.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="Player.c" />
+    <ClCompile Include="Random.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battle.h" />
+    <ClInclude Include="Cards.h" />
+    <ClInclude Include="Functions.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Random.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bridge.cppcheck" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
