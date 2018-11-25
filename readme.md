@@ -4,13 +4,13 @@ Un petit jeu de Bridge fait avec :heart: par des étudiants de Descartes Paris V
 ## Déroulement :sparkles:
 
 ### :boom: Début du match :boom:
-  * Définion du type de Bridge joué, selon celui-ci le déroulement diffèrera
-  * Chaque joueur entre son nom -> Sa position lui est ensuite attribué
+  * Définition du type de Bridge joué, selon celui-ci le déroulement diffèrera
+  * Chaque joueur entre son nom -> Sa position lui est ensuite attribuée
   * Ses cartes lui sont distribuées
   * Attribution du donneur aléatoirement
 
 ### :boom: Enchères :boom:
-  * Chaque joueur entre une proposition de nombre de levée et de couleur d'enchère ou "PASSE".
+  * Chaque joueur entre une proposition de nombre de levées et de couleur d'enchère ou "PASSE".
   * Affichage de l'enchère précédente la plus forte
   * Une fois l'enchère terminée, quand il y a eu 3 "PASSE" successifs, déclaration du contrat.
 
